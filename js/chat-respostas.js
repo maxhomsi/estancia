@@ -139,7 +139,7 @@ window.PALADAR_CHAT = {
     {
       id: "calorias", assunto: "nutricao",
       pergunta: "Quantas calorias tem?",
-      resposta: "<strong>180 kcal a cada 100 g</strong>. O vidro inteiro (350 g) tem <strong>630 kcal</strong>, 32% dos valores diários de referência.",
+      resposta: "<strong>180 kcal a cada 100 g</strong>. O vidro inteiro (350 g) tem <strong>630 kcal</strong>, 31% dos valores diários de referência.",
       palavras: ["caloria", "calorias", "kcal", "energetico", "engorda", "dieta"],
       relacionadas: ["proteina", "tabela"]
     },
@@ -153,21 +153,21 @@ window.PALADAR_CHAT = {
     {
       id: "sodio", assunto: "nutricao",
       pergunta: "Quanto sódio tem?",
-      resposta: "<strong>615 mg de sódio a cada 100 g</strong>. O vidro inteiro (350 g) tem 2.149 mg, 107% dos valores diários de referência.",
+      resposta: "<strong>615 mg de sódio a cada 100 g</strong>. O vidro inteiro (350 g) tem 2.152 mg, 107% dos valores diários de referência.",
       palavras: ["sodio", "sal", "salgado", "pressao", "hipertensao"],
       relacionadas: ["tabela", "gorduras"]
     },
     {
       id: "gorduras", assunto: "nutricao",
       pergunta: "Quanta gordura tem?",
-      resposta: "A cada 100 g: <strong>8 g de gorduras totais</strong>, das quais 3 g são saturadas e 0 g trans. No vidro inteiro (350 g): 28 g totais, 10,5 g saturadas e 0,7 g trans.",
+      resposta: "A cada 100 g: <strong>8 g de gorduras totais</strong>, das quais 3 g são saturadas e 0 g trans. No vidro inteiro (350 g): 28 g totais, 10,5 g saturadas e 0 g trans.",
       palavras: ["gordura", "gorduras", "saturada", "trans", "colesterol", "oleo"],
       relacionadas: ["tabela", "calorias"]
     },
     {
       id: "tabela", assunto: "nutricao",
       pergunta: "Ver a tabela completa",
-      resposta: "Porção: 350 g (1 vidro). Valores a cada 100 g / no vidro / %VD:<ul><li>Valor energético: 180 kcal / 630 kcal / 32%</li><li>Carboidratos: 3,0 g / 10,5 g / 4%</li><li>Açúcares totais: 1,5 g / 5,3 g</li><li>Açúcares adicionados: 0 g / 0 g / 0%</li><li>Proteínas: 20,0 g / 70 g / 140%</li><li>Gorduras totais: 8,0 g / 28,0 g / 43%</li><li>Gorduras saturadas: 3,0 g / 10,5 g / 53%</li><li>Gorduras trans: 0 g / 0,7 g / 33%</li><li>Fibra alimentar: 0,5 g / 1,8 g / 7%</li><li>Sódio: 615 mg / 2.149 mg / 107%</li></ul>Valores diários com base em uma dieta de 2.000 kcal. A tabela também está na seção <a href=\"index.html#rotulo\">No rótulo</a>.",
+      resposta: "Porção: 350 g (1 vidro). Valores a cada 100 g / no vidro / %VD:<ul><li>Valor energético: 180 kcal / 630 kcal / 31%</li><li>Carboidratos: 3,0 g / 10,5 g / 3%</li><li>Açúcares totais: 1,5 g / 5,2 g</li><li>Açúcares adicionados: 0 g / 0 g / 0%</li><li>Proteínas: 20,0 g / 70,0 g / 140%</li><li>Gorduras totais: 8,0 g / 28,0 g / 43%</li><li>Gorduras saturadas: 3,0 g / 10,5 g / 52%</li><li>Gorduras trans: 0 g / 0 g / 0%</li><li>Fibra alimentar: 0,5 g / 1,7 g / 6%</li><li>Sódio: 615 mg / 2.152 mg / 107%</li></ul>Valores diários com base em uma dieta de 2.000 kcal. A tabela também está na seção <a href=\"index.html#rotulo\">No rótulo</a>.",
       palavras: ["tabela", "nutricional", "nutricao", "nutrientes", "valores", "carboidrato", "fibra", "fibras", "macros"],
       relacionadas: ["calorias", "proteina"]
     },
