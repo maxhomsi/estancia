@@ -74,32 +74,46 @@ section[id] { scroll-margin-top: 4.5rem; }
 
 .lema { color: var(--verde-medio); font-weight: 600; font-size: .95rem; margin-bottom: .8rem; }
 
-/* ---------- Topo ---------- */
+/* ---------- Topo ----------
+   No computador a logo fica no centro, entre os links do menu.
+   No celular ela vai para a esquerda e o menu vira um botão. */
 .topo { position: sticky; top: 0; z-index: 20; background: var(--creme); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
 .topo.rolou { border-bottom-color: var(--linha); box-shadow: 0 6px 20px -16px rgba(42, 34, 32, .5); }
-.topo__linha { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: .6rem; }
+.topo__linha { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: .5rem; }
 .topo__marca { display: block; }
-.topo__marca img { width: clamp(7.5rem, 11vw, 10rem); transition: width .25s ease; }
-.topo.rolou .topo__marca img { width: clamp(6rem, 7.5vw, 7rem); }
+.topo__marca img { width: clamp(8.5rem, 13vw, 11rem); transition: width .25s ease; }
+.topo.rolou .topo__marca img { width: clamp(6.5rem, 8vw, 7.75rem); }
 @media (prefers-reduced-motion: reduce) { .topo__marca img { transition: none; } }
-.menu { display: flex; align-items: center; gap: clamp(.9rem, 2vw, 1.75rem); list-style: none; margin: 0; padding: 0; }
-.menu a { text-decoration: none; font-weight: 500; font-size: 1rem; color: var(--tinta); padding-block: .3rem; }
-.menu a:hover, .menu a[aria-current="page"] { color: var(--verde-medio); }
-.menu a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--mostarda); text-underline-offset: .45em; text-decoration-thickness: 2px; }
+.topo__marca--celular { display: none; }
+.topo__nav { flex: 1; }
+
+.menu { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(1.25rem, 3vw, 2.75rem); }
+.menu__lado { display: flex; align-items: center; gap: clamp(1.1rem, 2.6vw, 2.25rem); list-style: none; margin: 0; padding: 0; }
+.menu__lado:first-child { justify-content: flex-end; }
+.menu__lado:last-child { justify-content: flex-start; }
+.menu__lado a { text-decoration: none; font-weight: 500; font-size: 1rem; color: var(--tinta); padding-block: .3rem; white-space: nowrap; }
+.menu__lado a:hover, .menu__lado a[aria-current="page"] { color: var(--verde-medio); }
+.menu__lado a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--mostarda); text-underline-offset: .45em; text-decoration-thickness: 2px; }
 .menu__botao {
   display: none; font: inherit; font-weight: 500; font-size: .95rem; color: var(--tinta);
   background: none; border: 1px solid var(--linha); border-radius: 999px; padding: .4rem 1.1rem; cursor: pointer;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 56rem) {
+  .topo__marca--celular { display: block; }
+  .topo__marca--celular img { width: clamp(7.25rem, 30vw, 8.5rem); }
+  .topo.rolou .topo__marca--celular img { width: 6.25rem; }
+  .topo__nav { flex: none; }
+  .menu__marca { display: none; }
   .menu__botao { display: inline-block; }
   .menu {
-    display: none; flex-direction: column; align-items: stretch; gap: 0;
+    display: none;
     position: absolute; left: 0; right: 0; top: 100%;
     background: var(--creme); border-bottom: 1px solid var(--linha); padding: .25rem var(--margem) 1rem;
   }
-  .menu.aberto { display: flex; }
-  .menu a { display: block; padding-block: .8rem; border-bottom: 1px solid var(--linha); font-size: 1rem; }
+  .menu.aberto { display: block; }
+  .menu__lado { display: block; }
+  .menu__lado a { display: block; padding-block: .8rem; border-bottom: 1px solid var(--linha); }
 }
 
 /* ---------- Botões ---------- */

@@ -24,21 +24,31 @@
 
   <header class="topo">
     <div class="miolo topo__linha">
-      <a class="topo__marca" href="index.html" aria-label="Paladar da Estância, página inicial">
+      <a class="topo__marca topo__marca--celular" href="index.html" aria-label="Paladar da Estância, página inicial">
         <picture>
           <source srcset="assets/logo-marca.webp" type="image/webp">
           <img src="assets/logo-marca.png" alt="Paladar da Estância" width="900" height="513">
         </picture>
       </a>
-      <nav aria-label="Principal">
+      <nav class="topo__nav" aria-label="Principal">
         <button class="menu__botao" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-        <ul class="menu" id="menu">
-          <li><a href="#empresa">A empresa</a></li>
-          <li><a href="#produto">O produto</a></li>
-          <li><a href="#rotulo">No rótulo</a></li>
-          <li><a href="#para-quem">Para quem é</a></li>
-          <li><a href="receitas.html">Receitas</a></li>
-        </ul>
+        <div class="menu" id="menu">
+          <ul class="menu__lado">
+            <li><a href="#empresa">A empresa</a></li>
+            <li><a href="#produto">O produto</a></li>
+            <li><a href="#rotulo">No rótulo</a></li>
+          </ul>
+          <a class="topo__marca menu__marca" href="index.html" aria-label="Paladar da Estância, página inicial">
+            <picture>
+              <source srcset="assets/logo-marca.webp" type="image/webp">
+              <img src="assets/logo-marca.png" alt="Paladar da Estância" width="900" height="513">
+            </picture>
+          </a>
+          <ul class="menu__lado">
+            <li><a href="#para-quem">Para quem é</a></li>
+            <li><a href="receitas.html">Receitas</a></li>
+          </ul>
+        </div>
       </nav>
     </div>
   </header>
