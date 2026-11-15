@@ -51,24 +51,3 @@
   });
 })();
 
-/* Foto de destaque: alterna entre as opções a cada clique (?foto=2 abre na segunda). */
-(function () {
-  var caixa = document.querySelector("[data-trocar-foto]");
-  if (!caixa) return;
-  var fotos = caixa.querySelectorAll("img");
-  var aviso = caixa.querySelector(".abertura__troca");
-  var atual = 0;
-  function mostrar(i) {
-    atual = (i + fotos.length) % fotos.length;
-    fotos.forEach(function (f, n) { f.classList.toggle("ativa", n === atual); });
-    aviso.textContent = "Trocar foto (" + (atual + 1) + " de " + fotos.length + ")";
-  }
-  var pedida = parseInt(new URLSearchParams(location.search).get("foto"), 10);
-  if (pedida >= 1 && pedida <= fotos.length) mostrar(pedida - 1);
-  caixa.addEventListener("click", function () {
-    mostrar(atual + 1);
-    var url = new URL(location.href);
-    url.searchParams.set("foto", atual + 1);
-    history.replaceState(null, "", url);
-  });
-})();
