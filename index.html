@@ -48,6 +48,7 @@
           <ul class="menu__lado">
             <li><a href="#para-quem">Para quem é</a></li>
             <li><a href="receitas.html">Receitas</a></li>
+            <li><a href="#contato">Contato</a></li>
           </ul>
         </div>
       </nav>
@@ -88,14 +89,14 @@
         <div>
           <p class="lema">A empresa</p>
           <h2>A lacuna entre o industrializado e a comida de verdade</h2>
-        </div>
-        <div class="empresa__texto">
-          <p>Paladar da Estância nasce para atender quem tem pouco tempo para cozinhar, mas não abre mão de refeições saborosas, seguras e com as características da comida feita em casa.</p>
-          <p>Produzimos e comercializamos molho pronto para consumo à base de carne, com sabor caseiro e sem conservantes. Praticidade sem abrir mão da qualidade.</p>
           <p class="validade">
             <strong>90 dias</strong>
             <span>de validade. Os testes para 180 e 360 dias estão em andamento.</span>
           </p>
+        </div>
+        <div class="empresa__texto">
+          <p>Paladar da Estância nasce para atender quem tem pouco tempo para cozinhar, mas não abre mão de refeições saborosas, seguras e com as características da comida feita em casa.</p>
+          <p>Produzimos e comercializamos molho pronto para consumo à base de carne, com sabor caseiro e sem conservantes. Praticidade sem abrir mão da qualidade.</p>
         </div>
       </div>
     </section>
@@ -172,17 +173,19 @@
           <h2>O que vai no vidro</h2>
         </div>
         <div class="rotulo__grade">
-          <div class="rotulo__frente">
-            <img src="assets/rotulo-frente.webp" alt="Frente do rótulo Paladar da Estância: carne bovina desfiada tradicional, peso líquido 320 g" width="716" height="658">
-          </div>
           <div class="rotulo__dados">
+            <div class="rotulo__frente">
+              <img src="assets/rotulo-frente.webp" alt="Frente do rótulo Paladar da Estância: carne bovina desfiada tradicional, peso líquido 320 g" width="716" height="658">
+            </div>
+
             <h3>Ingredientes</h3>
             <p>Carne bovina (acém), cebola, tomate, alho, sal, vinagre e óleo vegetal.</p>
             <p class="selo">Não contém glúten</p>
 
             <h3>Conservação</h3>
             <p>Manter em local fresco, seco e ao abrigo da luz. Após aberto, conservar na geladeira e consumir em até 5 dias.</p>
-
+          </div>
+          <div class="rotulo__dados">
             <h3>Informação nutricional</h3>
             <table class="tabela">
               <caption>Porções por embalagem: 1. Porção: 320 g (1 vidro).</caption>
@@ -245,7 +248,7 @@
     </section>
   </main>
 
-  <footer class="rodape">
+  <footer class="rodape" id="contato">
     <div class="miolo">
       <div class="rodape__grade">
         <div class="rodape__marca">
@@ -265,10 +268,13 @@
           </ul>
         </div>
         <div>
-          <h2>Paladar da Estância</h2>
+          <h2>Contato</h2>
+          <p class="rodape__chamada">Tem alguma dúvida sobre o molho? O assistente responde na hora.</p>
+          <button class="rodape__chat" type="button" data-abrir-chat>Tirar dúvidas no chat</button>
+          <div class="rodape__canais" data-contato-canais></div>
           <address>
-            Rua Coronel Aristides<br>
-            Porto Alegre, RS<br>
+            Paladar da Estância<br>
+            Rua Coronel Aristides, Porto Alegre, RS<br>
             CNPJ 68.341.251/0001-73
           </address>
         </div>

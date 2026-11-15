@@ -30,7 +30,14 @@
 
   --largura: 74rem;
   --margem: clamp(1.25rem, 4.5vw, 3rem);
-  --respiro: clamp(3.25rem, 6vw, 5.25rem);
+  --respiro: clamp(2.75rem, 4.6vw, 4.25rem);
+
+  /* Logo do topo: tamanho parado no início e depois de rolar.
+     A imagem tem proporção 900 x 513, por isso a altura é a largura x 0,57. */
+  --logo: clamp(9.5rem, 14.5vw, 12.5rem);
+  --logo-rolou: clamp(7rem, 8.5vw, 8.5rem);
+  --topo-alto: calc(var(--logo) * .57 + 1rem + 1px);
+  --topo-baixo: calc(var(--logo-rolou) * .57 + 1rem + 1px);
   --raio: clamp(.9rem, 1.6vw, 1.4rem);
 }
 
@@ -49,6 +56,7 @@ body {
   font-size: clamp(1.0625rem, 1.05vw, 1.15rem);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  padding-top: var(--topo-alto);
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -62,7 +70,7 @@ p { margin: 0; max-width: 62ch; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--verde-medio); outline-offset: 3px; border-radius: 4px; }
 
-section[id] { scroll-margin-top: 4.5rem; }
+section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 
 .miolo { width: min(100% - 2 * var(--margem), var(--largura)); margin-inline: auto; }
 
@@ -75,33 +83,52 @@ section[id] { scroll-margin-top: 4.5rem; }
 .lema { color: var(--verde-medio); font-weight: 600; font-size: .95rem; margin-bottom: .8rem; }
 
 /* ---------- Topo ----------
-   No computador a logo fica no centro, entre os links do menu.
-   No celular ela vai para a esquerda e o menu vira um botão. */
-.topo { position: sticky; top: 0; z-index: 20; background: var(--creme); border-bottom: 1px solid var(--linha); box-shadow: 0 6px 20px -16px rgba(42, 34, 32, .5); }
+   No computador a logo fica no centro, com 3 links de cada lado.
+   O topo é fixo e o corpo reserva a altura dele, então encolher a logo
+   ao rolar não empurra a página (antes isso fazia o topo piscar).
+   No celular a logo vai para a esquerda e o menu vira um botão. */
+.topo {
+  --logo-agora: var(--logo);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  background: var(--creme); border-bottom: 1px solid var(--linha);
+  box-shadow: 0 6px 20px -16px rgba(42, 34, 32, .5);
+}
+.topo.rolou { --logo-agora: var(--logo-rolou); }
 .topo__linha { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: .5rem; }
 .topo__marca { display: block; }
-.topo__marca img { width: clamp(9.5rem, 14.5vw, 12.5rem); transition: width .25s ease; }
-.topo.rolou .topo__marca img { width: clamp(7rem, 8.5vw, 8.5rem); }
-@media (prefers-reduced-motion: reduce) { .topo__marca img { transition: none; } }
+.topo__marca img { width: var(--logo-agora); transition: width .25s ease; }
 .topo__marca--celular { display: none; }
 .topo__nav { flex: 1; }
 
-.menu { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(1.25rem, 3vw, 2.75rem); }
-.menu__lado { display: flex; align-items: center; gap: clamp(1.1rem, 2.6vw, 2.25rem); list-style: none; margin: 0; padding: 0; }
+.menu { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(1.5rem, 3.2vw, 3rem); }
+/* Os links descem até a altura da palavra PALADAR (a casinha ocupa o alto da logo). */
+.menu__lado {
+  display: flex; align-items: center; gap: clamp(1.1rem, 2.4vw, 2.1rem); list-style: none; margin: 0; padding: 0;
+  transform: translateY(calc(var(--logo-agora) * .06)); transition: transform .25s ease;
+}
 .menu__lado:first-child { justify-content: flex-end; }
 .menu__lado:last-child { justify-content: flex-start; }
-.menu__lado a { text-decoration: none; font-weight: 500; font-size: 1rem; color: var(--tinta); padding-block: .3rem; white-space: nowrap; }
-.menu__lado a:hover, .menu__lado a[aria-current="page"] { color: var(--verde-medio); }
-.menu__lado a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--mostarda); text-underline-offset: .45em; text-decoration-thickness: 2px; }
+.menu__lado a {
+  position: relative; text-decoration: none; font-weight: 600; font-size: 1rem; letter-spacing: -.005em;
+  color: var(--tinta); padding-block: .35rem; white-space: nowrap; transition: color .15s;
+}
+.menu__lado a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -.05rem; height: 2px; border-radius: 2px;
+  background: var(--mostarda); transform: scaleX(0); transform-origin: left; transition: transform .2s ease;
+}
+.menu__lado a:hover, .menu__lado a.ativo, .menu__lado a[aria-current="page"] { color: var(--verde-medio); }
+.menu__lado a:hover::after, .menu__lado a.ativo::after, .menu__lado a[aria-current="page"]::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .topo__marca img, .menu__lado, .menu__lado a::after { transition: none; }
+}
 .menu__botao {
-  display: none; font: inherit; font-weight: 500; font-size: .95rem; color: var(--tinta);
+  display: none; font: inherit; font-weight: 600; font-size: .95rem; color: var(--tinta);
   background: none; border: 1px solid var(--linha); border-radius: 999px; padding: .4rem 1.1rem; cursor: pointer;
 }
 
 @media (max-width: 56rem) {
+  :root { --logo: clamp(8rem, 33vw, 9.5rem); --logo-rolou: 6.75rem; }
   .topo__marca--celular { display: block; }
-  .topo__marca--celular img { width: clamp(8rem, 33vw, 9.5rem); }
-  .topo.rolou .topo__marca--celular img { width: 6.75rem; }
   .topo__nav { flex: none; }
   .menu__marca { display: none; }
   .menu__botao { display: inline-block; }
@@ -111,8 +138,9 @@ section[id] { scroll-margin-top: 4.5rem; }
     background: var(--creme); border-bottom: 1px solid var(--linha); padding: .25rem var(--margem) 1rem;
   }
   .menu.aberto { display: block; }
-  .menu__lado { display: block; }
+  .menu__lado { display: block; transform: none; }
   .menu__lado a { display: block; padding-block: .8rem; border-bottom: 1px solid var(--linha); }
+  .menu__lado a::after { display: none; }
 }
 
 /* ---------- Botões ---------- */
@@ -127,7 +155,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 .elo:hover { color: var(--verde-medio); }
 
 /* ---------- Abertura ---------- */
-.abertura { padding-block: clamp(1.5rem, 3.5vw, 3rem) clamp(2.5rem, 4.5vw, 3.75rem); }
+.abertura { padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(2rem, 3.5vw, 3rem); }
 .abertura__grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 4.5vw, 4rem); align-items: center; }
 .abertura__apoio { font-size: clamp(1.1rem, 1.35vw, 1.3rem); line-height: 1.55; margin-top: 1.25rem; max-width: 32ch; }
 .abertura__foto { border-radius: var(--raio); overflow: hidden; aspect-ratio: 5 / 4; background: var(--linha); }
@@ -164,11 +192,11 @@ section[id] { scroll-margin-top: 4.5rem; }
 .cabeca p:not(.lema) { margin-top: 1rem; font-size: 1.08em; }
 
 /* Empresa */
-.empresa__grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+.empresa__grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.75rem, 4.5vw, 4rem); align-items: center; }
 .empresa__texto p + p { margin-top: 1rem; }
 .empresa__texto p:first-child { font-size: 1.12em; color: var(--tinta); }
 .validade {
-  margin-top: 1.75rem; padding: 1.25rem 1.5rem; border-radius: var(--raio); background: var(--mostarda-claro);
+  margin-top: 1.5rem; padding: 1.1rem 1.4rem; border-radius: var(--raio); background: var(--mostarda-claro);
   display: flex; align-items: center; gap: 1.25rem; max-width: none;
 }
 .validade strong { font-size: clamp(2.2rem, 4vw, 3rem); line-height: 1; letter-spacing: -0.04em; color: var(--verde); white-space: nowrap; font-weight: 700; }
@@ -188,7 +216,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 /* Diferenciais: título ao lado da grade */
 .lado { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.6fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
 .diferenciais { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(1.5rem, 3.5vw, 3rem); }
-.diferenciais div { padding: 1.1rem 0 1.35rem; border-top: 2px solid var(--mostarda); }
+.diferenciais div { padding: .95rem 0 1.1rem; border-top: 2px solid var(--mostarda); }
 .diferenciais dt { font-weight: 600; font-size: clamp(1.1rem, 1.3vw, 1.25rem); color: var(--tinta); letter-spacing: -0.015em; }
 .diferenciais dd { margin: .35rem 0 0; max-width: 34ch; }
 .diferenciais--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 2rem; }
@@ -207,11 +235,11 @@ section[id] { scroll-margin-top: 4.5rem; }
 .ficha dd { margin: 0; color: var(--tinta); font-weight: 500; }
 
 /* ---------- Rótulo ---------- */
-.rotulo__grade { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; margin-top: 2rem; }
-.rotulo__frente { border-radius: var(--raio); overflow: hidden; box-shadow: 0 1.5rem 3rem -1.75rem rgba(42, 34, 32, .5); position: sticky; top: 5.5rem; }
+.rotulo__grade { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(1.75rem, 4.5vw, 4rem); align-items: start; margin-top: 1.5rem; }
+.rotulo__frente { border-radius: var(--raio); overflow: hidden; box-shadow: 0 1.5rem 3rem -1.75rem rgba(42, 34, 32, .5); margin-bottom: 1.75rem; }
 .rotulo__frente img { width: 100%; }
-.rotulo__dados h3 { margin-top: 1.75rem; }
-.rotulo__dados h3:first-child { margin-top: 0; }
+.rotulo__dados h3 { margin-top: 1.5rem; }
+.rotulo__dados h3:first-child, .rotulo__frente + h3 { margin-top: 0; }
 .rotulo__dados p { margin-top: .5rem; }
 .selo { display: inline-block; margin-top: .85rem; font-weight: 600; font-size: .92rem; color: var(--verde-escuro); background: var(--verde-claro); border-radius: 999px; padding: .4rem 1rem; }
 
@@ -226,10 +254,10 @@ section[id] { scroll-margin-top: 4.5rem; }
 .nota { font-size: .85em; margin-top: .85rem; color: var(--suave); }
 
 /* ---------- Para quem é ---------- */
-.janelas { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 1.75rem); }
+.janelas { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 1.75rem); }
 .janelas li {
   background: var(--mostarda-claro); border-radius: 999px 999px var(--raio) var(--raio);
-  padding: clamp(4rem, 7vw, 6rem) clamp(1.25rem, 2.2vw, 2rem) clamp(1.75rem, 3vw, 2.5rem); text-align: center;
+  padding: clamp(3rem, 4.5vw, 4rem) clamp(1.25rem, 2.2vw, 2rem) clamp(1.5rem, 2.5vw, 2rem); text-align: center;
 }
 .janelas li:nth-child(2) { background: var(--verde-claro); }
 .janelas p { margin: .5rem auto 0; max-width: 24ch; }
@@ -239,12 +267,12 @@ section[id] { scroll-margin-top: 4.5rem; }
 .convite .cabeca { margin-inline: auto; }
 .convite p { margin-inline: auto; }
 .convite p:not(.lema) { max-width: 40ch; }
-.convite .acoes { justify-content: center; margin-top: 1.75rem; }
+.convite .acoes { justify-content: center; margin-top: 1.5rem; }
 
 /* ---------- Página de receitas ---------- */
 .pagina__grade { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
 .pagina__intro { font-size: clamp(1.1rem, 1.35vw, 1.3rem); line-height: 1.55; margin-top: 1.25rem; max-width: 36ch; }
-.pagina__foto { aspect-ratio: 4 / 5; max-height: 34rem; width: 100%; }
+.pagina__foto { aspect-ratio: 4 / 5; max-height: 30rem; width: 100%; }
 .aviso { margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 1.75rem); border-radius: var(--raio); background: var(--mostarda-claro); color: var(--tinta); }
 .aviso h2 { font-size: clamp(1.3rem, 1.8vw, 1.6rem); }
 .aviso p { margin-top: .5rem; }
@@ -260,7 +288,16 @@ section[id] { scroll-margin-top: 4.5rem; }
 .rodape a { text-decoration: none; }
 .rodape a:hover { color: #fff; text-decoration: underline; text-underline-offset: .3em; }
 .rodape :focus-visible { outline-color: var(--mostarda); }
-.rodape address { font-style: normal; margin-top: .75rem; }
+.rodape address { font-style: normal; margin-top: 1rem; font-size: .95rem; color: rgba(217, 227, 207, .8); }
+.rodape__chamada { margin-top: .75rem; max-width: 30ch; }
+.rodape__chat {
+  margin-top: .9rem; font: inherit; font-weight: 600; font-size: .95rem; cursor: pointer;
+  background: var(--mostarda); color: var(--tinta); border: 0; border-radius: 999px; padding: .65rem 1.2rem;
+}
+.rodape__chat:hover { background: var(--mostarda-claro); }
+.rodape__canais:not(:empty) { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.rodape__canais a { display: inline-block; text-decoration: none; border: 1px solid rgba(217, 227, 207, .4); border-radius: 999px; padding: .5rem 1rem; font-weight: 500; }
+.rodape__canais a:hover { border-color: var(--mostarda); color: #fff; text-decoration: none; }
 .rodape__fim { margin-top: clamp(2rem, 4vw, 3rem); padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, .15); font-size: .9rem; color: rgba(217, 227, 207, .75); max-width: none; }
 
 @media (max-width: 58rem) {
@@ -269,7 +306,7 @@ section[id] { scroll-margin-top: 4.5rem; }
 @media (max-width: 54rem) {
   .empresa__grade, .produto__grade, .rotulo__grade, .pagina__grade { grid-template-columns: 1fr; }
   .produto__foto, .pagina__foto { max-width: 22rem; width: 100%; margin-inline: auto; }
-  .rotulo__frente { position: static; max-width: 28rem; }
+  .rotulo__frente { max-width: 28rem; }
   .janelas { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; }
   .diferenciais--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rodape__grade { grid-template-columns: 1fr 1fr; }

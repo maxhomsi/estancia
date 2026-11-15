@@ -275,6 +275,17 @@
     if (a && a.getAttribute("href").charAt(0) === "#" && window.matchMedia("(max-width: 36rem)").matches) fecharPainel(false);
   });
 
+  // Botões do site que abrem o chat (ex.: "Tirar dúvidas no chat" no rodapé).
+  document.querySelectorAll("[data-abrir-chat]").forEach(function (b) {
+    b.addEventListener("click", function () { if (painel.hidden) abrir(); else campo.focus(); });
+  });
+
+  // Canais de contato no rodapé, quando preenchidos em chat-respostas.js.
+  var canais = blocoContato().replace(/class="pchat-contato"/g, "");
+  document.querySelectorAll("[data-contato-canais]").forEach(function (el) {
+    el.innerHTML = canais.replace(/^<span class="pchat-contatos">|<\/span>$/g, "");
+  });
+
   // Ganchos para testes e para abrir o chat a partir de outro botão do site.
   window.PaladarChat = { abrir: abrir, fechar: function () { fecharPainel(false); }, buscar: buscar };
 })();
