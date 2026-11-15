@@ -1,7 +1,15 @@
-// Menu no celular: abre e fecha a lista de links.
+// Menu no celular e linha sob o topo depois de rolar a página.
 (function () {
+  var topo = document.querySelector(".topo");
   var botao = document.querySelector(".menu__botao");
   var menu = document.getElementById("menu");
+
+  if (topo) {
+    var marcar = function () { topo.classList.toggle("rolou", window.scrollY > 8); };
+    marcar();
+    window.addEventListener("scroll", marcar, { passive: true });
+  }
+
   if (!botao || !menu) return;
 
   function fechar() {

@@ -13,21 +13,21 @@
   <meta property="og:description" content="Molho pronto à base de carne, com sabor caseiro e sem conservantes.">
   <meta property="og:url" content="https://paladardaestancia.com/">
   <meta property="og:image" content="https://paladardaestancia.com/assets/og.jpg">
-  <meta name="theme-color" content="#2a1b16">
+  <meta name="theme-color" content="#fcfbf8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link rel="preload" href="assets/fonts/marcellus.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a class="pular" href="#conteudo">Ir para o conteúdo</a>
 
-  <header class="topo escuro">
+  <header class="topo">
     <div class="miolo topo__linha">
       <a class="topo__marca" href="index.html" aria-label="Paladar da Estância, página inicial">
         <picture>
-          <source srcset="assets/logo-claro.webp" type="image/webp">
-          <img src="assets/logo-claro.png" alt="Paladar da Estância" width="900" height="513">
+          <source srcset="assets/logo-marca.webp" type="image/webp">
+          <img src="assets/logo-marca.png" alt="Paladar da Estância" width="900" height="513">
         </picture>
       </a>
       <nav aria-label="Principal">
@@ -44,23 +44,23 @@
   </header>
 
   <main id="conteudo">
-    <section class="abertura escuro">
-      <div class="abertura__grade">
-        <div class="abertura__texto">
-          <p class="abertura__lema">Sabores que contam histórias</p>
-          <h1>Tradição na mesa, conveniência no dia a dia</h1>
-          <p class="abertura__apoio">Molho pronto para consumo à base de carne, com sabor de comida feita em casa e sem conservantes.</p>
-          <div class="acoes">
-            <a class="botao" href="#produto">Conheça o produto</a>
-            <a class="elo" href="receitas.html">Ver receitas</a>
+    <section class="abertura">
+      <div class="miolo">
+        <div class="abertura__grade">
+          <div>
+            <p class="lema">Sabores que contam histórias</p>
+            <h1>Tradição na mesa, conveniência no dia a dia</h1>
+            <p class="abertura__apoio">Molho pronto para consumo à base de carne, com sabor de comida feita em casa e sem conservantes.</p>
+            <div class="acoes">
+              <a class="botao" href="#produto">Conheça o produto</a>
+              <a class="elo" href="receitas.html">Ver receitas</a>
+            </div>
+          </div>
+          <div class="abertura__foto">
+            <img src="assets/fotos/carne-desfiada.webp" alt="Tigela de carne bovina desfiada ao molho sobre mesa de madeira" width="1216" height="896" fetchpriority="high">
           </div>
         </div>
-        <div class="abertura__foto">
-          <img src="assets/fotos/carne-desfiada.webp" alt="Tigela de carne bovina desfiada ao molho sobre mesa de madeira" width="1216" height="896" fetchpriority="high">
-        </div>
-      </div>
-      <div class="miolo">
-        <ul class="promessas">
+        <ul class="selos">
           <li>Receitas feitas com tempo e cuidado</li>
           <li>Praticidade para o seu dia a dia</li>
           <li>Sem conservantes</li>
@@ -71,7 +71,10 @@
 
     <section class="bloco" id="empresa">
       <div class="miolo empresa__grade">
-        <h2>A lacuna entre o industrializado e a comida de verdade</h2>
+        <div>
+          <p class="lema">A empresa</p>
+          <h2>A lacuna entre o industrializado e a comida de verdade</h2>
+        </div>
         <div class="empresa__texto">
           <p>Paladar da Estância nasce para atender quem tem pouco tempo para cozinhar, mas não abre mão de refeições saborosas, seguras e com as características da comida feita em casa.</p>
           <p>Produzimos e comercializamos molho pronto para consumo à base de carne, com sabor caseiro e sem conservantes. Praticidade sem abrir mão da qualidade.</p>
@@ -83,14 +86,21 @@
       </div>
     </section>
 
-    <section class="campo" aria-label="Sabor caseiro, com alma de campo">
-      <img src="assets/fotos/campos.webp" alt="Campos ondulados com gado ao amanhecer" width="1472" height="640" loading="lazy">
-      <p>Sabor caseiro, com alma de campo.</p>
-    </section>
-
-    <section class="bloco" id="diferenciais">
+    <div class="campo">
       <div class="miolo">
-        <h2>Por que escolher o nosso molho</h2>
+        <figure>
+          <img src="assets/fotos/campos.webp" alt="Campos ondulados com gado ao amanhecer" width="1472" height="640" loading="lazy">
+          <figcaption>Sabor caseiro, com alma de campo.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <section class="bloco bloco--areia" id="diferenciais">
+      <div class="miolo">
+        <div class="cabeca">
+          <p class="lema">Diferenciais</p>
+          <h2>Por que escolher o nosso molho</h2>
+        </div>
         <dl class="diferenciais">
           <div>
             <dt>Sabor autêntico</dt>
@@ -120,12 +130,13 @@
       </div>
     </section>
 
-    <section class="bloco escuro" id="produto">
+    <section class="bloco" id="produto">
       <div class="miolo produto__grade">
         <div class="arco produto__foto">
           <img src="assets/fotos/potes.webp" alt="Potes de vidro com carne bovina desfiada recém-envasada" width="1000" height="1500" loading="lazy">
         </div>
         <div class="produto__texto">
+          <p class="lema">O produto</p>
           <h2>Carne bovina desfiada, pronta para servir</h2>
           <p>Um vidro resolve a refeição: é só aquecer e levar à mesa. Feito para a rotina de casa e para a prateleira de empórios, mercados e vendas diretas.</p>
           <dl class="ficha">
@@ -140,9 +151,12 @@
       </div>
     </section>
 
-    <section class="bloco bloco--nata claro" id="rotulo">
+    <section class="bloco bloco--areia" id="rotulo">
       <div class="miolo">
-        <h2>O que vai no vidro</h2>
+        <div class="cabeca">
+          <p class="lema">No rótulo</p>
+          <h2>O que vai no vidro</h2>
+        </div>
         <div class="rotulo__grade">
           <div class="rotulo__frente">
             <img src="assets/rotulo-frente.webp" alt="Frente do rótulo Paladar da Estância: carne bovina desfiada tradicional, peso líquido 320 g" width="716" height="658">
@@ -182,7 +196,10 @@
 
     <section class="bloco" id="para-quem">
       <div class="miolo">
-        <h2>Feito para quem valoriza sabor e tempo</h2>
+        <div class="cabeca">
+          <p class="lema">Para quem é</p>
+          <h2>Feito para quem valoriza sabor e tempo</h2>
+        </div>
         <ul class="janelas">
           <li>
             <h3>Rotina corrida</h3>
@@ -200,25 +217,27 @@
       </div>
     </section>
 
-    <section class="bloco escuro convite" id="receitas">
+    <section class="bloco bloco--verde convite" id="receitas">
       <div class="miolo">
-        <p class="convite__lema">Qualidade e sabor em cada vidro</p>
-        <h2>A união entre tradição, sabor e praticidade</h2>
-        <p class="convite__apoio">Em breve, um caderno de receitas feito para aproveitar ao máximo o nosso molho.</p>
+        <div class="cabeca">
+          <p class="lema">Qualidade e sabor em cada vidro</p>
+          <h2>A união entre tradição, sabor e praticidade</h2>
+          <p>Em breve, um caderno de receitas feito para aproveitar ao máximo o nosso molho.</p>
+        </div>
         <div class="acoes">
-          <a class="botao" href="receitas.html">Ver receitas</a>
+          <a class="botao botao--claro" href="receitas.html">Ver receitas</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="rodape escuro">
+  <footer class="rodape">
     <div class="miolo">
       <div class="rodape__grade">
         <div class="rodape__marca">
           <picture>
-            <source srcset="assets/logo-claro.webp" type="image/webp">
-            <img src="assets/logo-claro.png" alt="Paladar da Estância" width="900" height="513">
+            <source srcset="assets/logo-marca.webp" type="image/webp">
+            <img src="assets/logo-marca.png" alt="Paladar da Estância" width="900" height="513">
           </picture>
           <p>Praticidade com sabor caseiro. Molho pronto à base de carne, sem conservantes.</p>
         </div>
