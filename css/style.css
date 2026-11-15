@@ -77,12 +77,11 @@ section[id] { scroll-margin-top: 4.5rem; }
 /* ---------- Topo ----------
    No computador a logo fica no centro, entre os links do menu.
    No celular ela vai para a esquerda e o menu vira um botão. */
-.topo { position: sticky; top: 0; z-index: 20; background: var(--creme); border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s; }
-.topo.rolou { border-bottom-color: var(--linha); box-shadow: 0 6px 20px -16px rgba(42, 34, 32, .5); }
+.topo { position: sticky; top: 0; z-index: 20; background: var(--creme); border-bottom: 1px solid var(--linha); box-shadow: 0 6px 20px -16px rgba(42, 34, 32, .5); }
 .topo__linha { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: .5rem; }
 .topo__marca { display: block; }
-.topo__marca img { width: clamp(8.5rem, 13vw, 11rem); transition: width .25s ease; }
-.topo.rolou .topo__marca img { width: clamp(6.5rem, 8vw, 7.75rem); }
+.topo__marca img { width: clamp(9.5rem, 14.5vw, 12.5rem); transition: width .25s ease; }
+.topo.rolou .topo__marca img { width: clamp(7rem, 8.5vw, 8.5rem); }
 @media (prefers-reduced-motion: reduce) { .topo__marca img { transition: none; } }
 .topo__marca--celular { display: none; }
 .topo__nav { flex: 1; }
@@ -101,8 +100,8 @@ section[id] { scroll-margin-top: 4.5rem; }
 
 @media (max-width: 56rem) {
   .topo__marca--celular { display: block; }
-  .topo__marca--celular img { width: clamp(7.25rem, 30vw, 8.5rem); }
-  .topo.rolou .topo__marca--celular img { width: 6.25rem; }
+  .topo__marca--celular img { width: clamp(8rem, 33vw, 9.5rem); }
+  .topo.rolou .topo__marca--celular img { width: 6.75rem; }
   .topo__nav { flex: none; }
   .menu__marca { display: none; }
   .menu__botao { display: inline-block; }
