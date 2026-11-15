@@ -58,8 +58,8 @@ window.PALADAR_CHAT = {
     {
       id: "como-servir", assunto: "produto",
       pergunta: "Com o que combina?",
-      resposta: "Combina com o que você já tem em casa: arroz, purê, massa, polenta, pão, tapioca ou recheio de wrap e sanduíche. Um caderno de receitas com o molho está sendo preparado e vai sair na <a href=\"receitas.html\">página de receitas</a>.",
-      palavras: ["combina", "servir", "acompanhamento", "acompanha", "ideia", "ideias", "sugestao", "como servir", "arroz", "massa", "pao", "sanduiche", "tapioca"],
+      resposta: "Combina com o que você já tem em casa: arroz, purê, massa, polenta, pão, tapioca ou recheio de wrap e sanduíche. Na <a href=\"receitas.html\">página de receitas</a> tem seis pratos com passo a passo.",
+      palavras: ["combina", "servir", "acompanhamento", "acompanha", "ideia", "ideias", "sugestao", "como servir", "arroz", "massa", "pao"],
       relacionadas: ["receitas", "como-preparar"]
     },
     {
@@ -275,8 +275,8 @@ window.PALADAR_CHAT = {
     {
       id: "receitas", assunto: "empresa",
       pergunta: "Vocês têm receitas?",
-      resposta: "O caderno de receitas com o molho está sendo preparado. Quando sair, vai estar na <a href=\"receitas.html\">página de receitas</a>.",
-      palavras: ["receitas", "receita", "caderno", "receita com"],
+      resposta: "Temos seis receitas com passo a passo: <a href=\"receitas.html#escondidinho\">escondidinho de aipim</a>, <a href=\"receitas.html#carreteiro\">arroz carreteiro</a>, <a href=\"receitas.html#polenta\">polenta cremosa</a>, <a href=\"receitas.html#tapioca\">tapioca com queijo coalho</a>, <a href=\"receitas.html#panqueca\">panqueca gratinada</a> e <a href=\"receitas.html#sanduiche\">sanduíche no pão francês</a>.",
+      palavras: ["receitas", "receita", "caderno", "receita com", "escondidinho", "carreteiro", "arroz carreteiro", "polenta", "tapioca", "tapioca com", "faco tapioca", "fazer tapioca", "panqueca", "sanduiche", "lanche", "passo a passo"],
       relacionadas: ["como-servir", "como-preparar"]
     }
   ],

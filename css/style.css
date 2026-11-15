@@ -241,11 +241,11 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-alto) + .75rem); }
 
 .tabela { width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .95em; font-variant-numeric: tabular-nums; }
 .tabela col.num { width: 5.25rem; }
-.tabela td .d { display: inline-block; width: 1.4em; text-align: left; }
 .tabela caption { text-align: left; padding-bottom: .6rem; color: var(--suave); }
 .tabela th, .tabela td { padding: .55rem 0 .55rem .5rem; border-bottom: 1px solid var(--linha); text-align: right; white-space: nowrap; }
-.tabela thead th.num-d { padding-right: 1.4em; }
 .tabela tbody th { white-space: normal; }
+.tabela th:not(:first-child), .tabela td { text-align: center; padding-inline: .25rem; }
+.tabela thead th:first-child, .tabela tbody th { text-align: left; padding-left: 0; }
 .tabela th:first-child, .tabela td:first-child { text-align: left; padding-left: 0; }
 .tabela thead th { font-weight: 600; color: var(--tinta); border-bottom: 2px solid var(--verde); }
 .tabela tbody th { font-weight: 400; color: var(--texto); }
@@ -254,7 +254,9 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-alto) + .75rem); }
 
 /* ---------- Para quem é ---------- */
 #para-quem { padding-bottom: 0; }
-.janelas { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 1.75rem); }
+.para-quem__grade { display: grid; grid-template-columns: minmax(0, .62fr) minmax(0, 2fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.para-quem__grade .cabeca { padding-bottom: clamp(1rem, 2vw, 1.5rem); }
+.janelas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 1.75rem); }
 .janelas li {
   background: var(--mostarda-claro); border-radius: 999px 999px 0 0;
   padding: clamp(3rem, 4.5vw, 4rem) clamp(1.25rem, 2.2vw, 2rem) clamp(1rem, 1.6vw, 1.35rem); text-align: center;
@@ -275,9 +277,44 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-alto) + .75rem); }
 .pagina__grade { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
 .pagina__intro { font-size: clamp(1.1rem, 1.35vw, 1.3rem); line-height: 1.55; margin-top: 1.25rem; max-width: 36ch; }
 .pagina__foto { aspect-ratio: 4 / 5; max-height: 30rem; width: 100%; }
-.aviso { margin-top: 1.75rem; padding: clamp(1.25rem, 2.5vw, 1.75rem); border-radius: var(--raio); background: var(--mostarda-claro); color: var(--tinta); }
-.aviso h2 { font-size: clamp(1.3rem, 1.8vw, 1.6rem); }
-.aviso p { margin-top: .5rem; }
+.indice { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.75rem; max-width: 34rem; }
+.indice a {
+  text-decoration: none; font-weight: 600; font-size: .95rem; color: var(--verde-escuro);
+  background: var(--verde-claro); border-radius: 999px; padding: .5rem 1rem;
+}
+.indice a:hover { background: var(--mostarda-claro); }
+
+.receita { scroll-margin-top: var(--topo-alto); }
+.receita__topo { max-width: 46rem; }
+.receita__topo > p { margin-top: .75rem; font-size: 1.08em; }
+.receita__info { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin: 1.25rem 0 0; }
+.receita__info div { display: flex; gap: .4rem; align-items: baseline; }
+.receita__info dt { color: var(--suave); font-size: .95rem; }
+.receita__info dd { margin: 0; font-weight: 600; color: var(--tinta); }
+.receita__corpo {
+  display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.5fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+.receita h3 { font-size: 1.15rem; letter-spacing: -0.01em; }
+.receita__ingredientes { background: var(--mostarda-claro); border-radius: var(--raio); padding: clamp(1.25rem, 2.4vw, 1.75rem); color: var(--tinta); }
+.bloco--branco .receita__ingredientes, .receita.bloco--branco .receita__ingredientes { background: var(--verde-claro); }
+.receita__ingredientes h3 + ul { margin-top: .65rem; }
+.receita__ingredientes ul + h3 { margin-top: 1.4rem; }
+.receita__ingredientes ul { margin: 0; padding-left: 1.15rem; }
+.receita__ingredientes li + li { margin-top: .4rem; }
+.receita__preparo ol { list-style: none; counter-reset: passo; margin: .9rem 0 0; padding: 0; }
+.receita__preparo li { counter-increment: passo; position: relative; padding-left: 2.9rem; min-height: 2rem; }
+.receita__preparo li + li { margin-top: 1rem; }
+.receita__preparo li::before {
+  content: counter(passo); position: absolute; left: 0; top: -.1rem;
+  width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center;
+  background: var(--verde); color: #fff; font-weight: 700; font-size: .95rem;
+}
+.receita__dica { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--linha); max-width: none; }
+.receita__dica strong { color: var(--verde-medio); }
+@media (max-width: 54rem) {
+  .receita__corpo { grid-template-columns: 1fr; }
+}
 
 /* ---------- Rodapé ---------- */
 .rodape { background: var(--verde-escuro); color: var(--verde-texto); padding-block: clamp(2.75rem, 5vw, 4rem) 1.75rem; }
@@ -309,7 +346,9 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-alto) + .75rem); }
   .empresa__grade, .produto__grade, .rotulo__grade, .pagina__grade { grid-template-columns: 1fr; }
   .produto__foto, .pagina__foto { max-width: 22rem; width: 100%; margin-inline: auto; }
   .rotulo__frente { position: static; max-width: 28rem; margin-top: 0; }
-  .janelas { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; }
+  .para-quem__grade { grid-template-columns: 1fr; gap: 1.5rem; }
+  .para-quem__grade .cabeca { padding-bottom: 0; }
+  .janelas { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; width: 100%; }
   .janelas li:not(:last-child) { border-radius: 999px 999px var(--raio) var(--raio); }
   .diferenciais--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rodape__grade { grid-template-columns: 1fr 1fr; }
