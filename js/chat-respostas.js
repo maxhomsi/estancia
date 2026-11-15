@@ -37,7 +37,7 @@ window.PALADAR_CHAT = {
     {
       id: "o-que-e", assunto: "produto",
       pergunta: "O que é o produto?",
-      resposta: "É um <strong>molho pronto para consumo à base de carne</strong>: carne bovina desfiada, com sabor de comida feita em casa e <strong>sem conservantes</strong>. É só aquecer e servir.",
+      resposta: "É um <strong>molho pronto para consumo à base de carne</strong>: carne bovina desfiada, com sabor de comida feita em casa e <strong>sem conservantes artificiais</strong>. É só aquecer e servir.",
       palavras: ["o que e", "produto", "que vende", "o que voces fazem", "molho", "carne desfiada", "o que tem", "vendem"],
       relacionadas: ["ingredientes", "como-preparar", "peso"]
     },
@@ -102,7 +102,7 @@ window.PALADAR_CHAT = {
     {
       id: "conservantes", assunto: "ingredientes",
       pergunta: "Tem conservantes?",
-      resposta: "<strong>Não.</strong> O molho é feito sem conservantes e sem aditivos artificiais.",
+      resposta: "<strong>Não leva conservantes artificiais.</strong> Os ingredientes são carne bovina (acém), cebola, tomate, alho, sal, vinagre e óleo vegetal.",
       palavras: ["conservante", "conservantes", "aditivo", "aditivos", "quimico", "natural", "artificial", "corante"],
       relacionadas: ["validade", "ingredientes"]
     },
@@ -247,14 +247,14 @@ window.PALADAR_CHAT = {
     {
       id: "empresa", assunto: "empresa",
       pergunta: "Quem é a Paladar da Estância?",
-      resposta: "A Paladar da Estância nasceu para atender quem tem pouco tempo para cozinhar, mas não abre mão de refeições saborosas, seguras e com cara de comida feita em casa. A empresa produz e vende molho pronto à base de carne, com sabor caseiro e sem conservantes.",
+      resposta: "A Paladar da Estância nasceu para atender quem tem pouco tempo para cozinhar, mas não abre mão de refeições saborosas, seguras e com cara de comida feita em casa. A empresa produz e vende molho pronto à base de carne, com sabor caseiro e sem conservantes artificiais.",
       palavras: ["quem sao", "quem e voces", "quem e a paladar", "sobre a empresa", "empresa", "historia", "marca", "fundada", "dona", "dono"],
       relacionadas: ["diferenciais", "endereco"]
     },
     {
       id: "diferenciais", assunto: "empresa",
       pergunta: "Por que escolher o molho?",
-      resposta: "<ul><li><strong>Sabor autêntico</strong> de comida caseira</li><li><strong>Ingredientes selecionados</strong>, de origem confiável</li><li><strong>Praticidade</strong>: refeição pronta em minutos</li><li><strong>Sem conservantes</strong> nem aditivos artificiais</li><li><strong>Receita original</strong>, desenvolvida com tempo e cuidado</li><li><strong>Qualidade premium</strong>, presente em empórios, mercados e lojas gourmet</li></ul>",
+      resposta: "<ul><li><strong>Sabor autêntico</strong> de comida caseira</li><li><strong>Ingredientes selecionados</strong>, de origem confiável</li><li><strong>Praticidade</strong>: refeição pronta em minutos</li><li><strong>Sem conservantes artificiais</strong></li><li><strong>Receita original</strong>, desenvolvida com tempo e cuidado</li><li><strong>Qualidade premium</strong>, presente em empórios, mercados e lojas gourmet</li></ul>",
       palavras: ["diferencial", "diferenciais", "por que escolher", "por que comprar", "vantagem", "vantagens", "qualidade", "melhor"],
       relacionadas: ["o-que-e", "ingredientes"]
     },
