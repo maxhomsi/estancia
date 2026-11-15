@@ -61,7 +61,7 @@
   function mostrar(i) {
     atual = (i + fotos.length) % fotos.length;
     fotos.forEach(function (f, n) { f.classList.toggle("ativa", n === atual); });
-    aviso.textContent = "Foto " + (atual + 1) + " de " + fotos.length + ", clique para trocar";
+    aviso.textContent = "Trocar foto (" + (atual + 1) + " de " + fotos.length + ")";
   }
   var pedida = parseInt(new URLSearchParams(location.search).get("foto"), 10);
   if (pedida >= 1 && pedida <= fotos.length) mostrar(pedida - 1);

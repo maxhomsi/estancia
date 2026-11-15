@@ -159,9 +159,8 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-alto) + .75rem); }
 }
 .abertura__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
 .abertura__foto img.ativa { opacity: 1; }
-.abertura__foto .foto--produto { object-position: 50% 62%; }
 .abertura__troca {
-  position: absolute; right: .85rem; bottom: .85rem; z-index: 1;
+  position: absolute; right: .75rem; top: .75rem; z-index: 1;
   background: rgba(34, 54, 32, .88); color: #fff; font-size: .85rem; font-weight: 600;
   border-radius: 999px; padding: .4rem .85rem; pointer-events: none;
 }
