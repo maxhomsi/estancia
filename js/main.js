@@ -1,20 +1,7 @@
-// Topo: encolhe ao rolar, menu do celular e link da seção visível.
+// Menu do celular e link da seção visível.
 (function () {
-  var topo = document.querySelector(".topo");
   var botao = document.querySelector(".menu__botao");
   var menu = document.getElementById("menu");
-
-  // Encolhe depois de 120 px e só volta ao tamanho cheio perto do início.
-  // A folga entre os dois pontos evita que o topo fique alternando de tamanho.
-  if (topo) {
-    var marcar = function () {
-      var y = window.scrollY;
-      if (y > 120) topo.classList.add("rolou");
-      else if (y < 40) topo.classList.remove("rolou");
-    };
-    marcar();
-    window.addEventListener("scroll", marcar, { passive: true });
-  }
 
   // Sublinha no menu a seção que está na tela.
   var links = Array.prototype.slice.call(document.querySelectorAll('.menu__lado a[href^="#"]'));

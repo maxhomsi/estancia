@@ -32,12 +32,10 @@
   --margem: clamp(1.25rem, 4.5vw, 3rem);
   --respiro: clamp(2.75rem, 4.6vw, 4.25rem);
 
-  /* Logo do topo: tamanho parado no início e depois de rolar.
+  /* Logo do topo, sempre do mesmo tamanho.
      A imagem tem proporção 900 x 513, por isso a altura é a largura x 0,57. */
   --logo: clamp(9.5rem, 14.5vw, 12.5rem);
-  --logo-rolou: clamp(7rem, 8.5vw, 8.5rem);
   --topo-alto: calc(var(--logo) * .57 + 1rem + 1px);
-  --topo-baixo: calc(var(--logo-rolou) * .57 + 1rem + 1px);
   --raio: clamp(.9rem, 1.6vw, 1.4rem);
 }
 
@@ -70,7 +68,7 @@ p { margin: 0; max-width: 62ch; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--verde-medio); outline-offset: 3px; border-radius: 4px; }
 
-section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
+section[id], footer[id] { scroll-margin-top: calc(var(--topo-alto) + .75rem); }
 
 .miolo { width: min(100% - 2 * var(--margem), var(--largura)); margin-inline: auto; }
 
@@ -84,19 +82,16 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 
 /* ---------- Topo ----------
    No computador a logo fica no centro, com 3 links de cada lado.
-   O topo é fixo e o corpo reserva a altura dele, então encolher a logo
-   ao rolar não empurra a página (antes isso fazia o topo piscar).
+   O topo é fixo, tem sempre a mesma altura e o corpo reserva esse espaço.
    No celular a logo vai para a esquerda e o menu vira um botão. */
 .topo {
-  --logo-agora: var(--logo);
   position: fixed; top: 0; left: 0; right: 0; z-index: 20;
   background: var(--creme); border-bottom: 1px solid var(--linha);
   box-shadow: 0 6px 20px -16px rgba(42, 34, 32, .5);
 }
-.topo.rolou { --logo-agora: var(--logo-rolou); }
 .topo__linha { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: .5rem; }
 .topo__marca { display: block; }
-.topo__marca img { width: var(--logo-agora); transition: width .25s ease; }
+.topo__marca img { width: var(--logo); }
 .topo__marca--celular { display: none; }
 .topo__nav { flex: 1; }
 
@@ -104,7 +99,7 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 /* Os links descem até a altura da palavra PALADAR (a casinha ocupa o alto da logo). */
 .menu__lado {
   display: flex; align-items: center; gap: clamp(1.1rem, 2.4vw, 2.1rem); list-style: none; margin: 0; padding: 0;
-  transform: translateY(calc(var(--logo-agora) * .06)); transition: transform .25s ease;
+  transform: translateY(calc(var(--logo) * .06));
 }
 .menu__lado:first-child { justify-content: flex-end; }
 .menu__lado:last-child { justify-content: flex-start; }
@@ -119,7 +114,7 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 .menu__lado a:hover, .menu__lado a.ativo, .menu__lado a[aria-current="page"] { color: var(--verde-medio); }
 .menu__lado a:hover::after, .menu__lado a.ativo::after, .menu__lado a[aria-current="page"]::after { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) {
-  .topo__marca img, .menu__lado, .menu__lado a::after { transition: none; }
+  .menu__lado a::after { transition: none; }
 }
 .menu__botao {
   display: none; font: inherit; font-weight: 600; font-size: .95rem; color: var(--tinta);
@@ -127,7 +122,7 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 }
 
 @media (max-width: 56rem) {
-  :root { --logo: clamp(8rem, 33vw, 9.5rem); --logo-rolou: 6.75rem; }
+  :root { --logo: clamp(7.5rem, 30vw, 8.75rem); }
   .topo__marca--celular { display: block; }
   .topo__nav { flex: none; }
   .menu__marca { display: none; }
@@ -236,16 +231,19 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 
 /* ---------- Rótulo ---------- */
 .rotulo__grade { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(1.75rem, 4.5vw, 4rem); align-items: start; margin-top: 1.5rem; }
-.rotulo__frente { border-radius: var(--raio); overflow: hidden; box-shadow: 0 1.5rem 3rem -1.75rem rgba(42, 34, 32, .5); margin-bottom: 1.75rem; }
+.rotulo__frente { border-radius: var(--raio); overflow: hidden; box-shadow: 0 1.5rem 3rem -1.75rem rgba(42, 34, 32, .5); position: sticky; top: calc(var(--topo-alto) + 1.25rem); }
 .rotulo__frente img { width: 100%; }
 .rotulo__dados h3 { margin-top: 1.5rem; }
-.rotulo__dados h3:first-child, .rotulo__frente + h3 { margin-top: 0; }
+.rotulo__dados h3:first-child { margin-top: 0; }
 .rotulo__dados p { margin-top: .5rem; }
 .selo { display: inline-block; margin-top: .85rem; font-weight: 600; font-size: .92rem; color: var(--verde-escuro); background: var(--verde-claro); border-radius: 999px; padding: .4rem 1rem; }
 
 .tabela { width: 100%; border-collapse: collapse; margin-top: .75rem; font-size: .95em; font-variant-numeric: tabular-nums; }
+.tabela col.num { width: 5.25rem; }
+.tabela td .d { display: inline-block; width: 1.4em; text-align: left; }
 .tabela caption { text-align: left; padding-bottom: .6rem; color: var(--suave); }
-.tabela th, .tabela td { padding: .5rem .5rem; border-bottom: 1px solid var(--linha); text-align: right; white-space: nowrap; }
+.tabela th, .tabela td { padding: .55rem 0 .55rem .5rem; border-bottom: 1px solid var(--linha); text-align: right; white-space: nowrap; }
+.tabela thead th.num-d { padding-right: 1.4em; }
 .tabela tbody th { white-space: normal; }
 .tabela th:first-child, .tabela td:first-child { text-align: left; padding-left: 0; }
 .tabela thead th { font-weight: 600; color: var(--tinta); border-bottom: 2px solid var(--verde); }
@@ -254,9 +252,10 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 .nota { font-size: .85em; margin-top: .85rem; color: var(--suave); }
 
 /* ---------- Para quem é ---------- */
+#para-quem { padding-bottom: 0; }
 .janelas { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 1.75rem); }
 .janelas li {
-  background: var(--mostarda-claro); border-radius: 999px 999px var(--raio) var(--raio);
+  background: var(--mostarda-claro); border-radius: 999px 999px 0 0;
   padding: clamp(3rem, 4.5vw, 4rem) clamp(1.25rem, 2.2vw, 2rem) clamp(1.5rem, 2.5vw, 2rem); text-align: center;
 }
 .janelas li:nth-child(2) { background: var(--verde-claro); }
@@ -306,8 +305,9 @@ section[id], footer[id] { scroll-margin-top: calc(var(--topo-baixo) + 1rem); }
 @media (max-width: 54rem) {
   .empresa__grade, .produto__grade, .rotulo__grade, .pagina__grade { grid-template-columns: 1fr; }
   .produto__foto, .pagina__foto { max-width: 22rem; width: 100%; margin-inline: auto; }
-  .rotulo__frente { max-width: 28rem; }
+  .rotulo__frente { position: static; max-width: 28rem; }
   .janelas { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; }
+  .janelas li:not(:last-child) { border-radius: 999px 999px var(--raio) var(--raio); }
   .diferenciais--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rodape__grade { grid-template-columns: 1fr 1fr; }
   .rodape__marca { grid-column: 1 / -1; }
